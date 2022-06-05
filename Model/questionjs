@@ -1,0 +1,40 @@
+const mongoose = require('mongoose');
+const shortid = require('shortid');
+
+const Schema = mongoose.Schema;
+const ObjectId = Schema.ObjectId;
+const questionSchema = new Schema({
+    qId: { 
+        type: String, 
+        default: shortid.generate},
+    question: { 
+        type: String, 
+        default: null},
+    level: { 
+        type: String, 
+        default: null},//easy,medium,hard
+        topicId: { 
+          type: String, 
+          default: null,
+          ref:"topic"},
+       categoriesId: { 
+            type: String, 
+            default: null,
+            ref:"topic"},
+    status: { 
+        type: String, 
+        default: null},//Y/N/T
+    createdAt:{
+        type:Date,
+        default:Date.now()},
+    updatedAt:{
+        type:Date,
+        default:Date.now()},
+    createdBy:{
+        type:String,
+        default:null},
+    updatedBy:{
+        type:String,
+        default:null}
+})
+module.exports = mongoose.model("question", questionSchema);
